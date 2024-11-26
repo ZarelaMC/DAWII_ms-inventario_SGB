@@ -1,0 +1,58 @@
+package pe.edu.cibertec.dawii.ms.ecc.inventario.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import pe.edu.cibertec.dawii.ms.ecc.inventario.model.Recurso;
+import pe.edu.cibertec.dawii.ms.ecc.inventario.service.RecursoService;
+
+@RestController
+@RequestMapping("/api/recurso")
+public class RecursoController {
+ 
+	@Autowired
+	RecursoService recursoService;
+	
+	@GetMapping
+	public List<Recurso> listaRecursosTodos() {
+		return recursoService.listaRecursosTodos();
+	} 
+  
+	@GetMapping("/buscarRecursoId/{idRecurso}")
+	public Optional<Recurso> buscarRecursoId(@PathVariable int idRecurso) {
+		return recursoService.buscarRecursoId(idRecurso);
+	}
+
+	@PostMapping
+	public Recurso registrarRecurso(@RequestBody Recurso recurso) {
+		return recursoService.registrarRecurso(recurso);
+	}
+
+	@PutMapping("/{idRecurso}")
+	public ResponseEntity<Recurso> actualizarRecurso(@PathVariable int idRecurso,@RequestBody Recurso recurso) {
+		Optional<Recurso> recursoActualizado = recursoService.actualizarRecurso(idRecurso, recurso);
+		return recursoActualizado.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	}
+
+	@DeleteMapping("/{idRecurso}")
+	public void eliminarRecurso(@PathVariable int idRecurso) {
+		recursoService.eliminarRecurso(idRecurso);
+	}
+	
+	@PutMapping("/actualizaEstadoRecurso/{idRecurso}")
+	public ResponseEntity<Recurso> actualizarEstadoRecurso(@PathVariable int idRecurso) {
+		Optional<Recurso> recursoActualizado = recursoService.actualizarEstadoRecurso(idRecurso);
+		return recursoActualizado.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	}
+}

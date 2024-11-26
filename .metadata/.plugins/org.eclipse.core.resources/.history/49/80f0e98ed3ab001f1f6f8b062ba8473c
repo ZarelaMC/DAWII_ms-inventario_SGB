@@ -1,0 +1,5 @@
+package pe.edu.cibertec.dawii.ms.ecc.notificaciones.rmq;
+
+public class RabbitMQConfig {
+
+}

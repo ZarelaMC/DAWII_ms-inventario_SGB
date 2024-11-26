@@ -1,0 +1,36 @@
+package pe.edu.cibertec.dawii.ms.ecc.notificaciones.rmq;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.context.annotation.Bean;
+
+public class RabbitMQConfig {
+	//PARÁMETROS para la conexión a la cola del RabbitMQ
+	//Puente entre los microservicios
+	public static final String EXCHANGE_NAME = "recurso_notificacion_exchange";
+
+	//Ruta
+	public static final String ROUTING_KEY = "recurso_notificacion.key";
+	
+	//Nombre de la cola
+	public static final String QUEUE_NAME = "notificacionQueue";
+
+
+	//Beans de configuración de RabbitMQ
+	@Bean
+	public DirectExchange exchange() {
+		return new DirectExchange(EXCHANGE_NAME);
+	}
+	
+	@Bean
+	public Queue queue() {
+		return new Queue(QUEUE_NAME);
+	}
+	
+	@Bean
+	public Binding binding(Queue queue, DirectExchange exchange) {
+		return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
+	}
+}

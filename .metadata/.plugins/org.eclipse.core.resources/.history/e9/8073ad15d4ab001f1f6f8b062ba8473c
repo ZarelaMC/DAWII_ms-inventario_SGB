@@ -1,0 +1,12 @@
+package pe.edu.cibertec.dawii.ms.ecc.notificaciones.rmq;
+
+public class RabbitMQConfig {
+	//Puente entre los microservicios
+	public static final String EXCHANGE_NAME = "recurso_notificacion_exchange";
+
+	//Ruta
+	public static final String ROUTING_KEY = "recurso_notificacion.key";
+	
+	//Nombre de la cola
+	public static final String QUEUE_NAME = "notificacionQueue";
+}

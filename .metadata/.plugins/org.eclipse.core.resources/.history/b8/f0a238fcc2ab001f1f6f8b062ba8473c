@@ -1,0 +1,15 @@
+package pe.edu.cibertec.dawii.ecc.inventario.service;
+  
+import java.util.List;
+import java.util.Optional;
+
+import pe.edu.cibertec.dawii.ecc.inventario.model.Revista;
+
+public interface RevistaService {
+	List<Revista> listaRevistasTodos();
+	Optional<Revista> obtenerRevistaPorId(Integer idRevista);
+	Revista registrarRevista(Revista revista);
+	Optional<Revista> actualizarRevista(Revista revista, Integer idProd);
+	void eliminarRevista(Integer idRevista); 
+
+}

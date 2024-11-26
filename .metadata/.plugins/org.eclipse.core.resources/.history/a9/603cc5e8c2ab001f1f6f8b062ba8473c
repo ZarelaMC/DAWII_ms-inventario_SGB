@@ -1,0 +1,9 @@
+package pe.edu.cibertec.dawii.ecc.inventario.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import pe.edu.cibertec.dawii.ecc.inventario.model.Revista;
+
+public interface RevistaRepository extends JpaRepository<Revista,Integer> {
+   
+}

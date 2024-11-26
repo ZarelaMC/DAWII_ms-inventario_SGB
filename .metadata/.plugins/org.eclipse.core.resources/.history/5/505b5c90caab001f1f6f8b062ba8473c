@@ -1,0 +1,5 @@
+package pe.edu.cibertec.dawii.ms.ecc.notificaciones.service.impl;
+
+public class NotificacionServiceImpl {
+
+}

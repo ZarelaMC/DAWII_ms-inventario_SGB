@@ -1,0 +1,21 @@
+package pe.edu.cibertec.dawii.ms.ecc.inventario.rmq;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
+import pe.edu.cibertec.dawii.ms.ecc.inventario.model.Recurso;
+
+public class NotificacionSender {
+	
+	private final RabbitTemplate rabbitTemplate;
+
+	//Constructor
+	public NotificacionSender(RabbitTemplate rabbitTemplate) {
+		this.rabbitTemplate = rabbitTemplate;
+	}
+	
+	//Método para ENVIAR mensajes
+	public void enviarNotificacion(Recurso recurso) {
+		rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME,
+										RabbitMQConfig.ROUTING_KEY);
+	}
+}

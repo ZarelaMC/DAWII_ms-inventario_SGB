@@ -1,0 +1,13 @@
+package pe.edu.cibertec.dawi.ms.ecc.inventario;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MsEccInventarioApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MsEccInventarioApplication.class, args);
+	}
+
+}
